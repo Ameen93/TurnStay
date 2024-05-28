@@ -9,7 +9,9 @@ import SummaryForm from "./components/SummaryForm";
 
 const App: React.FC = () => {
   const [selectedRoom, setSelectedRoom] = useState<any>({});
-  const [customerDetails, setCustomerDetails] = useState<any>({});
+  const [customerDetails, setCustomerDetails] = useState<
+    Partial<{ name: string; email: string; phone: string }>
+  >({});
   const [dates, setDates] = useState<{
     checkInDate: Date | null;
     checkOutDate: Date | null;
@@ -19,11 +21,16 @@ const App: React.FC = () => {
     setSelectedRoom(room);
   };
 
-  const handleCustomerDetailsChange = (details: any) => {
+  const handleCustomerDetailsChange = (
+    details: Partial<{ name: string; email: string; phone: string }>
+  ) => {
     setCustomerDetails(details);
   };
 
-  const handleDatesChange = (newDates: any) => {
+  const handleDatesChange = (newDates: {
+    checkInDate: Date | null;
+    checkOutDate: Date | null;
+  }) => {
     setDates(newDates);
   };
 
@@ -33,6 +40,7 @@ const App: React.FC = () => {
         <CustomerDetailsForm onChange={handleCustomerDetailsChange} />
         <DatePickerForm onChange={handleDatesChange} />
         <RoomInfo onSelect={handleRoomSelect} />
+        <CardPaymentForm />
       </div>
       <div className="summary-container">
         <SummaryForm

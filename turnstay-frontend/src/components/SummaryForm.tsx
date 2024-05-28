@@ -1,5 +1,6 @@
 // src/SummaryForm.tsx
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 interface SummaryFormProps {
   selectedRoom: any;
@@ -26,7 +27,44 @@ const SummaryForm: React.FC<SummaryFormProps> = ({
       const daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
       setTotalAmount(daysDiff * selectedRoom.billing_amount);
     }
-  }, [dates, selectedRoom]);
+  }, [dates.checkInDate, dates.checkOutDate, selectedRoom.billing_amount]);
+
+  const handlePayment = async () => {
+    const paymentDetails = {
+      account_id: 1, // Example account ID
+      billing_amount: totalAmount,
+      billing_currency: "ZAR",
+      processing_currency: "USD",
+      checkin_date: dates.checkInDate?.toISOString().split("T")[0],
+      checkout_date: dates.checkOutDate?.toISOString().split("T")[0],
+      description: selectedRoom.description,
+      product: selectedRoom.product,
+      customer: customerDetails.name,
+      customer_email: customerDetails.email,
+      customer_phone_number: customerDetails.phone,
+      callback_url: "https://www.guesthouse.com",
+      success_redirect_url: "https://turnstay.com/",
+      failed_redirect_url: "https://www.google.com/",
+      payment_url_style: "embed",
+      payment_type: "Card Payment",
+    };
+
+    try {
+      console.log("Sending payload:", JSON.stringify(paymentDetails, null, 2));
+      const response = await axios.post(
+        "http://localhost:5000/api/create-payment-intent",
+        paymentDetails
+      );
+      console.log("Payment Intent Response:", response.data);
+      // Handle the response from the backend (e.g., redirect to payment page)
+    } catch (error: any) {
+      if (axios.isAxiosError(error) && error.response) {
+        console.error("Error creating payment intent:", error.response.data);
+      } else {
+        console.error("Error creating payment intent:", error.message);
+      }
+    }
+  };
 
   return (
     <div className="summary-form">
@@ -55,7 +93,7 @@ const SummaryForm: React.FC<SummaryFormProps> = ({
         <h3>Total Amount</h3>
         <p>${totalAmount.toLocaleString()}</p>
       </div>
-      <button>Pay</button>
+      <button onClick={handlePayment}>Pay</button>
     </div>
   );
 };
