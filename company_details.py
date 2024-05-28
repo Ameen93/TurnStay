@@ -1,7 +1,6 @@
 import requests
 import json
 
-# Load configuration from config.json
 with open("config.json") as config_file:
     config = json.load(config_file)
 
