@@ -13,6 +13,7 @@ const SummaryForm: React.FC<SummaryFormProps> = ({
   dates,
 }) => {
   const [totalAmount, setTotalAmount] = useState(0);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   useEffect(() => {
     if (
@@ -55,12 +56,23 @@ const SummaryForm: React.FC<SummaryFormProps> = ({
         paymentDetails
       );
       console.log("Payment Intent Response:", response.data);
-      // Handle the response from the backend (e.g., redirect to payment page)
-    } catch (error: any) {
-      if (axios.isAxiosError(error) && error.response) {
-        console.error("Error creating payment intent:", error.response.data);
+
+      // Check if the response contains the payment URL and open it in a new window
+      if (response.data.turnstay_payment_url) {
+        window.open(response.data.turnstay_payment_url, "_blank");
+      }
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        if (error.response) {
+          console.error("Error creating payment intent:", error.response.data);
+          setErrorMessage("Payment was not successful. Please try again.");
+        } else {
+          console.error("Error creating payment intent:", error.message);
+          setErrorMessage("Payment was not successful. Please try again.");
+        }
       } else {
-        console.error("Error creating payment intent:", error.message);
+        console.error("Error creating payment intent:", error);
+        setErrorMessage("Payment was not successful. Please try again.");
       }
     }
   };
@@ -92,6 +104,7 @@ const SummaryForm: React.FC<SummaryFormProps> = ({
         <h3>Total Amount</h3>
         <p>${totalAmount.toLocaleString()}</p>
       </div>
+      {errorMessage && <p className="error-message">{errorMessage}</p>}
       <button onClick={handlePayment}>Pay</button>
     </div>
   );
