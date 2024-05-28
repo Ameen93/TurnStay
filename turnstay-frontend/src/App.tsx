@@ -33,7 +33,6 @@ const App: React.FC = () => {
         <CustomerDetailsForm onChange={handleCustomerDetailsChange} />
         <DatePickerForm onChange={handleDatesChange} />
         <RoomInfo onSelect={handleRoomSelect} />
-        <CardPaymentForm />
       </div>
       <div className="summary-container">
         <SummaryForm

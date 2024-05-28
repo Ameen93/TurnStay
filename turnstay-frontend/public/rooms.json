@@ -2,27 +2,27 @@
     {
       "description": "A cozy room with a queen-size bed and a beautiful view.",
       "product": "Queen Room",
-      "billing_amount": 450000
+      "billing_amount": 450
     },
     {
       "description": "A spacious room with a king-size bed and a private balcony.",
       "product": "King Room",
-      "billing_amount": 550000
+      "billing_amount": 550
     },
     {
       "description": "A family room with two double beds and a kitchenette.",
       "product": "Family Room",
-      "billing_amount": 650000
+      "billing_amount": 650
     },
     {
       "description": "A deluxe suite with a living area and a luxurious bathroom.",
       "product": "Deluxe Suite",
-      "billing_amount": 750000
+      "billing_amount": 750
     },
     {
       "description": "A standard room with a double bed and basic amenities.",
       "product": "Standard Room",
-      "billing_amount": 350000
+      "billing_amount": 350
     }
   ]
   

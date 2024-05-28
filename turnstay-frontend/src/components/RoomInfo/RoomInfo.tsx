@@ -27,7 +27,9 @@ const RoomInfo: React.FC<RoomInfoProps> = ({ onSelect }) => {
         <div key={index} className="room-card">
           <h3>{room.product}</h3>
           <p>{room.description}</p>
-          <p>Billing Amount: ${room.billing_amount.toLocaleString()}</p>
+          <p>
+            Billing Amount: ${room.billing_amount.toLocaleString()} per night
+          </p>
           <button onClick={() => onSelect(room)}>Select {room.product}</button>
         </div>
       ))}
