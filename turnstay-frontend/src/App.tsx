@@ -1,4 +1,3 @@
-// src/App.tsx
 import React, { useState } from "react";
 import "./App.css";
 import CardPaymentForm from "./components/CardPaymentForm/CardPaymentForm";

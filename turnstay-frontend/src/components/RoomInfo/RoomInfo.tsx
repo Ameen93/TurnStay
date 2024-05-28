@@ -1,4 +1,3 @@
-// src/RoomInfo.tsx
 import React, { useEffect, useState } from "react";
 import "./RoomInfo.css";
 

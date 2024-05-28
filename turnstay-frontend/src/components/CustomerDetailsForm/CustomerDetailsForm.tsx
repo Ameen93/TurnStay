@@ -1,4 +1,3 @@
-// src/CustomerDetailsForm.tsx
 import React from "react";
 import { useForm, SubmitHandler, WatchObserver } from "react-hook-form";
 
