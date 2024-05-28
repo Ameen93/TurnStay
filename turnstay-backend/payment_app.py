@@ -10,7 +10,7 @@ def get_dummy_payment_details():
         "account_id": 1,
         "billing_amount": 450000,
         "billing_currency": "ZAR",
-        "processing_currency": "USD",
+        "processing_currency": "",
         "checkin_date": "2023-08-07",
         "checkout_date": "2023-08-10",
         "description": "",

@@ -1,0 +1,33 @@
+/* src/App.css */
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.App {
+  display: flex;
+  width: 100%;
+  max-width: 1200px;
+  margin: 20px;
+}
+
+.form-container, .summary-container {
+  flex: 1;
+  padding: 20px;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.summary-container {
+  max-width: 400px;
+}
